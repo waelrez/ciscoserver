@@ -53,6 +53,60 @@ function makeDraggable(element){
 
     dragging = false;
 
+     });
+
+let selectedDevice = null;
+
+workspace.addEventListener("click",(e)=>{
+
+  if(!e.target.classList.contains("device")) return;
+
+  if(selectedDevice == null){
+
+    selectedDevice = e.target;
+
+    selectedDevice.style.borderColor = "yellow";
+
+  }else{
+
+    createConnection(selectedDevice,e.target);
+
+    selectedDevice.style.borderColor = "#00bfff";
+
+    selectedDevice = null;
+
+  }
+
+});
+
+function createConnection(dev1,dev2){
+
+  const line = document.createElement("div");
+
+  line.classList.add("connection");
+
+  const x1 = dev1.offsetLeft + 45;
+  const y1 = dev1.offsetTop + 45;
+
+  const x2 = dev2.offsetLeft + 45;
+  const y2 = dev2.offsetTop + 45;
+
+  const length = Math.hypot(x2 - x1,y2 - y1);
+
+  const angle = Math.atan2(y2 - y1,x2 - x1) * 180 / Math.PI;
+
+  line.style.width = length + "px";
+
+  line.style.left = x1 + "px";
+
+  line.style.top = y1 + "px";
+
+  line.style.transform = `rotate(${angle}deg)`;
+
+  workspace.appendChild(line);
+
+}
+
   });
 
 }
