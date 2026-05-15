@@ -56,4 +56,15 @@ body{
   align-items:center;
   cursor:move;
   user-select:none;
+  
 }
+
+.connection{
+  position:absolute;
+  height:4px;
+  background:#00ff99;
+  transform-origin:left center;
+
+  
+}
+
